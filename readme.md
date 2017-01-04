@@ -1,3 +1,5 @@
-# Noted
+# React-note
 
-Starter files for a Let's Code Along video series.
+### note web app
+
+
