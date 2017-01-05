@@ -12,4 +12,4 @@ import { Hello } from './components/hello';
 // }
 
 
-ReactDOM.render(<Hello msg="Work" />, document.getElementById('app'));
+ReactDOM.render(<Hello />, document.getElementById('app'));
