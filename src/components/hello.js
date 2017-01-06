@@ -1,11 +1,14 @@
 import React from 'react';
 
 class Hello extends React.Component {
+  constructor() {
+    super();
+    this.showSidebar = this.showSidebar.bind(this);
+  }
 
   showSidebar(e) {
     e.preventDefault();
-    // this.sidebar.classList.add('show');
-    this.showSidebar();
+    this.sidebar.classList.add('show');
   }
 
   render() {
@@ -13,7 +16,7 @@ class Hello extends React.Component {
       <div>
         <header className="mainHeader">
           <h1>note</h1>
-          <nav><a href="" onClick={x => this.showSidebar(x)} >Add New Note</a></nav>
+          <nav><a href="" onClick={this.showSidebar} >Add New Note</a></nav>
         </header>
         <section className="notes">
           <div className="noteCard">
@@ -23,7 +26,7 @@ class Hello extends React.Component {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
         </section>
-        <aside className="sidebar">
+        <aside className="sidebar" ref={(ref) => { this.sidebar = ref; }}>
           <form action="">
             <h3>Add New note</h3>
             <div className="close-btn">
@@ -44,4 +47,4 @@ class Hello extends React.Component {
 //   message: React.PropTypes.string,
 // };
 
-export { Hello };
+export default Hello;
