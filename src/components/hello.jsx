@@ -4,11 +4,17 @@ class Hello extends React.Component {
   constructor() {
     super();
     this.showSidebar = this.showSidebar.bind(this);
+    this.addNote = this.addNote.bind(this);
   }
 
   showSidebar(e) {
     e.preventDefault();
-    this.sidebar.classList.add('show');
+    this.sidebar.classList.toggle('show');
+  }
+
+  addNote(e) {
+    e.preventDefault();
+    console.log('submitted');
   }
 
   render() {
@@ -27,12 +33,13 @@ class Hello extends React.Component {
           </div>
         </section>
         <aside className="sidebar" ref={(ref) => { this.sidebar = ref; }}>
-          <form action="">
+          <form onSubmit={this.addNote}>
             <h3>Add New note</h3>
-            <div className="close-btn">
+            <div className="close-btn" onClick={this.showSidebar}>
               <i className="fa fa-times" />
             </div>
             <label htmlFor="note-title">Title:</label>
+            <input type="text" name="note-title" />
             <textarea className="note-text" />
             <input type="submit" value="Add New Note" />
           </form>
