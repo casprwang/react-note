@@ -2,15 +2,10 @@ import React from 'react';
 
 class Hello extends React.Component {
 
-  constructor() {
-    super();
-    this.showSidebar = this.showSidebar.bind(this);
-  }
-
   showSidebar(e) {
     e.preventDefault();
-    console.log('Hey');
-    console.log(this);
+    // this.sidebar.classList.add('show');
+    this.showSidebar();
   }
 
   render() {
@@ -18,7 +13,7 @@ class Hello extends React.Component {
       <div>
         <header className="mainHeader">
           <h1>note</h1>
-          <nav><a href="" onClick={this.showSidebar} >Add New Note</a></nav>
+          <nav><a href="" onClick={x => this.showSidebar(x)} >Add New Note</a></nav>
         </header>
         <section className="notes">
           <div className="noteCard">
