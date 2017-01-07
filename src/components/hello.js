@@ -3,6 +3,9 @@ import React from 'react';
 class Hello extends React.Component {
   constructor() {
     super();
+    this.state = {
+      notes: [],
+    };
     this.showSidebar = this.showSidebar.bind(this);
     this.addNote = this.addNote.bind(this);
   }
@@ -14,14 +17,22 @@ class Hello extends React.Component {
 
   addNote(e) {
     e.preventDefault();
-    console.log('submitted');
+    const note = {
+      title: this.noteTitle.value,
+      text: this.noteText.value,
+    };
+    const newNotes = Array.from(this.state.notes);
+    newNotes.push(note);
+    this.setState({
+      notes: newNotes,
+    });
   }
 
   render() {
     return (
       <div>
         <header className="mainHeader">
-          <h1>note</h1>
+          <h1>Note it!</h1>
           <nav><a href="" onClick={this.showSidebar} >Add New Note</a></nav>
         </header>
         <section className="notes">
@@ -39,8 +50,8 @@ class Hello extends React.Component {
               <i className="fa fa-times" />
             </div>
             <label htmlFor="note-title">Title:</label>
-            <input type="text" name="note-title" />
-            <textarea className="note-text" />
+            <input type="text" name="note-title" ref={(ref) => { this.noteTitle = ref; }} />
+            <textarea className="note-text" ref={(ref) => { this.noteText = ref; }} />
             <input type="submit" value="Add New Note" />
           </form>
         </aside>
