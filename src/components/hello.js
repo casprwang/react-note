@@ -21,7 +21,8 @@ class Hello extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        firebase.database().ref().on('value', (res) => {
+        // console.log(user);
+        firebase.database().ref(`user/${user.uid}/notes`).on('value', (res) => {
             // console.log(res.val());
           const userData = res.val();
           const dataArray = [];
@@ -32,7 +33,13 @@ class Hello extends React.Component {
           }
           this.setState({
             notes: dataArray,
+            loggedin: true,
           });
+        });
+      } else {
+        this.setState({
+          notes: [],
+          loggedin: false,
         });
       }
     });
@@ -51,14 +58,19 @@ class Hello extends React.Component {
       text: this.noteText.value,
     };
 
-    firebase.database().ref().push(note);
+    const userId = firebase.auth().currentUser.uid;
+
+    firebase.database().ref(`user/${userId}/notes`).push(note);
     this.noteTitle.value = '';
     this.noteText.value = '';
     this.showSidebar(e);
   }
 
   removeNote(noteId) {
-    firebase.database().ref(noteId).remove();
+    const userId = firebase.auth().currentUser.uid;
+    const dbRef = firebase.database().ref(`user/${userId}/notes/${noteId}`);
+    dbRef.remove();
+    // firebase.database().ref(`users/${userId}/notes/${noteId}`).remove();
   }
 
   createUser(e) {
@@ -109,20 +121,50 @@ class Hello extends React.Component {
       });
   }
 
+  renderCards() {
+    if (this.state.loggedin) {
+      return this.state.notes.map((note, i) =>
+        <NoteCard key={`note-${i}`} note={note} removeNote={this.removeNote} />,);
+    } else {
+      return (<h2>Login to add notes!</h2>);
+    }
+  }
+
+  logOut() {
+    firebase.auth().signOut();
+  }
+
   render() {
     return (
       <div>
         <header className="mainHeader">
           <h1>Note it!</h1>
-          <nav><a href="" onClick={this.showSidebar} >Add New Note</a></nav>
-          <nav><a href="" onClick={this.showCreate}>Create Account</a></nav>
-          <nav><a href="" onClick={this.showLogin}>Login</a></nav>
+
+          <nav>
+            {
+              (() => {
+                if (this.state.loggedin) {
+                  return (
+                    <span>
+                      <a href="" onClick={this.showSidebar} >Add New Note</a>
+                      <a href="" onClick={this.logOut}>Logout</a>
+                    </span>);
+                } else {
+                  return (
+                    <span>
+                      <a href="" onClick={this.showCreate}>Create Account</a>
+                      <a href="" onClick={this.showLogin}>Login</a>
+                    </span>);
+                }
+              })()
+            }
+          </nav>
+
+
         </header>
         <div className="overlay" ref={(ref) => { this.overlay = ref; }} />
         <section className="notes">
-          {this.state.notes.map((note, i) =>
-            <NoteCard key={`note-${i}`} note={note} removeNote={this.removeNote} />,
-          )}
+          {this.renderCards()}
         </section>
         <aside className="sidebar" ref={(ref) => { this.sidebar = ref; }}>
           <form onSubmit={this.addNote}>
