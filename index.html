@@ -8,7 +8,20 @@
 </head>
 <body>
 	<main id="app"></main>
-	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBydFJsSSYaGV_95fVKYMV7ugpIaVjLEgg",
+    authDomain: "note-it-cf19d.firebaseapp.com",
+    databaseURL: "https://note-it-cf19d.firebaseio.com",
+    storageBucket: "note-it-cf19d.appspot.com",
+    messagingSenderId: "487096907937"
+  };
+  firebase.initializeApp(config);
+  </script>
 	<script src="public/app.js"></script>
 </body>
 </html>
