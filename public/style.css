@@ -11,8 +11,6 @@ body {
 	min-height: 100vh;
 }
 
-
-
 /*
 	Main Header
 */
@@ -23,7 +21,7 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	background: white;
-	box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .mainHeader a {
@@ -56,7 +54,7 @@ body {
 .sidebar textarea {
 	width: 100%;
 	margin-bottom: 25px;
-	background: rgba(255,255,255,0.4);
+	background: rgba(255, 255, 255, 0.4);
 	border: none;
 	border-bottom: 2px solid #517288;
 	padding: 5px;
@@ -93,7 +91,7 @@ body {
 .noteCard {
 	flex: 1 0 200px;
 	background: white;
-	box-shadow: 3px 2px 3px rgba(0,0,0,0.1);
+	box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.1);
 	margin: 15px;
 	padding: 20px;
 	position: relative;
@@ -104,7 +102,7 @@ body {
 	position: relative;
 }
 
-.noteCard h4:after {
+.noteCard h4::after {
 	width: 20px;
 	height: 2px;
 	background: #182020;
@@ -130,6 +128,7 @@ body {
 	right: 20px;
 	z-index: 5;
 }
+
 .noteCard .fa:hover {
 	cursor: pointer;
 }
@@ -155,7 +154,6 @@ body {
 	opacity: 0;
 	transition: all 0.3s ease;
 	position: absolute;
-  z-index: 10;
 }
 
 .modal.show,
@@ -167,17 +165,18 @@ body {
 .modal {
 	width: 400px;
 	background: white;
-	border: 10px solid rgba(255,255,255,0.5);
+	border: 10px solid rgba(255, 255, 255, 0.5);
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 	border-radius: 5px;
-	box-shadow: 0 0 35px rgba(0,0,0,0.2);
+	box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
 }
 
 .modal div {
 	margin: 15px;
 }
+
 .modal label {
 	margin-right: 10px;
 }
@@ -189,12 +188,12 @@ body {
 	font-size: 25px;
 	padding: 0 10px;
 	border-radius: 5px;
-	border: 1px solid rgba(0,0,0,0.2);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .modal input[type=submit] {
 	background: rgba(50, 216, 81, 0.94);
-	box-shadow: 0px 3px 0 rgba(91, 165, 104, 0.94);
+	box-shadow: 0 3px 0 rgba(91, 165, 104, 0.94);
 	color: white;
 	border: none;
 }
@@ -206,7 +205,7 @@ body {
 }
 
 .modal input[type=submit]:active {
-	box-shadow: 0px 0px 0 rgba(91, 165, 104, 0.94);
+	box-shadow: 0 0 0 rgba(91, 165, 104, 0.94);
 }
 
 .modal .close {
@@ -223,5 +222,5 @@ body {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: rgba(0,0,0,0.4);
+	background: rgba(0, 0, 0, 0.4);
 }
